@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import bgImage from '../public/images/background_image.png'
+import bgImage from '../../public/images/background_image.png'
 export default function Home() {
     return (
         <div className="relative flex min-h-screen w-full flex-col px-8 pt-24">
