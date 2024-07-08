@@ -2,9 +2,7 @@ import CameraCapture from '@/app/ui/CameraCapture'
 import './styles.css'
 import {
   Cameraswitch,
-  CameraswitchOutlined,
   FlashlightOff,
-  FlashlightOffOutlined,
   ImageSearchOutlined,
 } from '@mui/icons-material'
 export default function Inspect() {

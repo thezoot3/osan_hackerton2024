@@ -13,7 +13,6 @@ import React, { Fragment } from 'react'
 import { usePathname } from 'next/navigation'
 import './styles.css'
 import Link from 'next/link'
-import { useSpring } from '@react-spring/web'
 export default function ServiceLayout({
   children,
 }: {
@@ -28,8 +27,8 @@ export default function ServiceLayout({
           {Object.keys(ServiceNavigationPath).map((item) => {
             //@ts-ignore
             return pathname === ServiceNavigationPath[item] ? (
-              //@ts-ignore
               <Link
+                //@ts-ignore
                 href={ServiceNavigationPath[item]}
                 key={item}
                 className={'w-full'}
@@ -61,8 +60,8 @@ export default function ServiceLayout({
                 </div>
               </Link>
             ) : (
-              //@ts-ignore
               <Link
+                //@ts-ignore
                 href={ServiceNavigationPath[item]}
                 key={item}
                 className={'w-full'}
