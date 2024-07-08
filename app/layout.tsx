@@ -17,8 +17,10 @@ export default function RootLayout({
     return (
         <html lang="kr">
             <body className={pretendard.className}>
-                <Header />
-                <main>{children}</main>
+                <nav>
+                    <Header />
+                </nav>
+                {children}
             </body>
         </html>
     )

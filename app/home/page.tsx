@@ -2,14 +2,14 @@ import Image from 'next/image'
 import bgImage from '../../public/images/background_image.png'
 export default function Home() {
     return (
-        <div className="relative flex min-h-screen w-full flex-col px-8 pt-24">
+        <div className="relative flex min-h-dvh w-full flex-col px-8 pt-24">
             <Image
-                src={bgImage as string}
+                src={bgImage}
                 alt={'asd'}
                 width={500}
                 height={500}
                 className="absolute bottom-0 left-0 w-full"
-            ></Image>
+            />
             <div className={'flex flex-col gap-5'}>
                 <div className={'flex flex-col gap-5 text-6xl font-bold'}>
                     <span>문구1,</span>
