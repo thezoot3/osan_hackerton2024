@@ -92,11 +92,6 @@ export default function ServiceLayout({
             )
           })}
         </div>
-        <div className="flex h-4 w-full items-center justify-center bg-gray-100">
-          <span className="text-xs font-light">
-            WebApp Rendered by Next.js, V1.0.0
-          </span>
-        </div>
       </div>
     </Fragment>
   )
