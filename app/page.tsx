@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import bgImage from '../public/images/background_image.png'
+import { ServiceNavigationPath } from '@/app/navigation'
+import Link from 'next/link'
 export default function Home() {
   return (
     <div className="relative flex min-h-screen w-full flex-col px-8 pt-24">
@@ -21,13 +23,17 @@ export default function Home() {
           <span>무궁화 삼천리 화려강산</span>
         </div>
         <div className={'flex flex-col gap-3'}>
-          <div
-            className={
-              'flex h-10 w-24 items-center justify-center rounded-xl bg-blue-500'
-            }
-          >
-            <span className={'text-base font-medium text-white'}>시작하기</span>
-          </div>
+          <Link href={ServiceNavigationPath.SERVICE_INSPECT}>
+            <div
+              className={
+                'flex h-10 w-24 items-center justify-center rounded-xl bg-blue-500'
+              }
+            >
+              <span className={'text-base font-medium text-white'}>
+                시작하기
+              </span>
+            </div>
+          </Link>
           <span className={'text-base font-medium text-blue-500'}>
             로그인하고 시작하기
           </span>
