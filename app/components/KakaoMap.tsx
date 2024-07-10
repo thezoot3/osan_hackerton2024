@@ -1,5 +1,5 @@
 'use client'
-import { Map as KMap, MapMarker, useKakaoLoader } from 'react-kakao-maps-sdk'
+import { Map as KMap, MapMarker } from 'react-kakao-maps-sdk'
 import React, { forwardRef, ReactElement, useCallback, useEffect, useImperativeHandle, useState } from 'react'
 import { useImmer } from 'use-immer'
 import { enableMapSet } from 'immer'
@@ -110,7 +110,7 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
         })
       },
     }),
-    [],
+    [setMarkers],
   )
   useEffect(() => {
     console.log(markers)

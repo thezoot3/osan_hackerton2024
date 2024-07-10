@@ -4,7 +4,6 @@ import './globals.css'
 import Header from '@/app/navigation/Header'
 import Script from 'next/script'
 import React from 'react'
-import { enableMapSet } from 'immer'
 
 const pretendard = localFont({ src: '../public/font/PretendardVariable.woff2' })
 export const metadata: Metadata = {
