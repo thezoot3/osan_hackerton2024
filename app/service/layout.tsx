@@ -22,7 +22,7 @@ export default function ServiceLayout({
   return (
     <Fragment>
       {children}
-      <div className="absolute bottom-0 flex w-full flex-col">
+      <div className="absolute bottom-0 z-30 flex w-full flex-col">
         <div id="shadow_top" className="flex w-full justify-between bg-white">
           {Object.keys(ServiceNavigationPath).map((item) => {
             //@ts-ignore
