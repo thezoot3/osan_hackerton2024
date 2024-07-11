@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import Header from '@/app/navigation/Header'
+import Header from './navigation/Header'
 import Script from 'next/script'
 import React from 'react'
 

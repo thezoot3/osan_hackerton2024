@@ -1,9 +1,9 @@
 export const ApiOrigin = 'https://hacker.thezoot3.com'
 
-interface UploadResponse {
+export interface UploadResponse {
   imageID: string
 }
-interface GarbageResponse {
+export interface GarbageResponse {
   name: string
   items: string[]
   instruct: {
