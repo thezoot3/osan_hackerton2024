@@ -1,12 +1,6 @@
 'use client'
 import Webcam from 'react-webcam'
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 export interface CameraCaptureRef {
   isInited: boolean
   captureImage: (width: number, height: number) => string | null
@@ -14,13 +8,22 @@ export interface CameraCaptureRef {
 }
 const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
   const [size, setSize] = useState({ width: 0, height: 0 })
-  const [facingMode, setFacing] = useState<'user' | 'environment'>(
-    'environment',
-  )
+  const [facingMode, setFacing] = useState<'user' | 'environment'>('environment')
+  const [videoC, setVideoC] = useState<{}>()
   useEffect(() => {
     setSize({ width: window.innerWidth, height: window.innerHeight })
   }, [])
-  useEffect(() => {}, [])
+  useEffect(() => {
+    if (size.height > size.width) {
+      setVideoC({
+        width: size.width,
+      })
+    } else {
+      setVideoC({
+        height: size.height,
+      })
+    }
+  }, [])
   useImperativeHandle(ref, () => ({
     isInited: Boolean(webcamRef.current),
     captureImage: (width: number, height: number): string | null => {
@@ -43,12 +46,9 @@ const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
       height={size.height}
       ref={webcamRef}
       mirrored={facingMode === 'user'}
-      screenshotFormat={'image/png'}
-      videoConstraints={{
-        aspectRatio: size.height / size.width,
-        facingMode: facingMode,
-        noiseSuppression: true,
-      }}
+      screenshotFormat={'image/jpeg'}
+      videoConstraints={{ ...videoC, aspectRatio: size.height / size.width, facingMode: facingMode }}
+      style={{ overflow: 'hidden', objectFit: 'cover' }}
     />
   )
 })

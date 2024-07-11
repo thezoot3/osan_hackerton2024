@@ -14,12 +14,12 @@ export interface KakaoMapProps {
   autoMarkerMerge: boolean
 }
 export interface KakaoMapAddMarkerParam {
-  id: number
+  id: string
   coordinate: { lat: number; lng: number }
   image?: { src: string; width: number; height: number }
 }
 export interface KakaoMapAddInfoWindowParam {
-  id: number
+  id: string
   infoWindow: ReactElement
 }
 export interface KakaoMapMarkerData {
@@ -39,8 +39,8 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
   useEffect(() => {
     enableMapSet()
   }, [])
-  const [markers, setMarkers] = useImmer(new Map<number, KakaoMapMarkerData>())
-  const [clickedMarker, setClickedMarker] = useState<number | null>()
+  const [markers, setMarkers] = useImmer(new Map<string, KakaoMapMarkerData>())
+  const [clickedMarker, setClickedMarker] = useState<string | null>()
   const [viewPoint, setViewPoint] = useState<{
     sw: Coordinate
     ne: Coordinate
@@ -72,7 +72,7 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
       },
     })
   }
-  function onMarkerClickFactory(id: number) {
+  function onMarkerClickFactory(id: string) {
     return () => {
       setClickedMarker(id)
     }
@@ -125,20 +125,33 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
     >
       {Array.from(markers.keys()).map((id) => {
         const marker = markers.get(id)!
-        /*console.log(
-          isMarkerVisable(marker.coordinate),
-          viewPoint,
-          marker.coordinate,
-        )*/
         if (isMarkerVisable(marker.coordinate)) {
           if (marker.infoWindow) {
             return (
-              <MapMarker position={marker.coordinate} key={id} clickable={true} onClick={onMarkerClickFactory(id)}>
+              <MapMarker
+                position={marker.coordinate}
+                key={id}
+                clickable={true}
+                onClick={onMarkerClickFactory(id)}
+                image={{
+                  src: marker.image?.src || '',
+                  size: { width: marker.image?.width || 0, height: marker.image?.height || 0 },
+                }}
+              >
                 {clickedMarker === id ? marker.infoWindow : null}
               </MapMarker>
             )
           } else {
-            return <MapMarker position={marker.coordinate} key={id} />
+            return (
+              <MapMarker
+                position={marker.coordinate}
+                key={id}
+                image={{
+                  src: marker.image?.src || '',
+                  size: { width: marker.image?.width || 0, height: marker.image?.height || 0 },
+                }}
+              ></MapMarker>
+            )
           }
         }
       })}

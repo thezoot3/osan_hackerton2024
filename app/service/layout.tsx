@@ -1,23 +1,11 @@
 'use client'
-import {
-  HistoryOutlined,
-  ImageSearchOutlined,
-  MapOutlined,
-  SettingsOutlined,
-} from '@mui/icons-material'
-import {
-  ServiceNavigationDisplay,
-  ServiceNavigationPath,
-} from '@/app/navigation'
+import { HistoryOutlined, ImageSearchOutlined, MapOutlined, SettingsOutlined } from '@mui/icons-material'
+import { ServiceNavigationDisplay, ServiceNavigationPath } from '@/app/navigation'
 import React, { Fragment } from 'react'
 import { usePathname } from 'next/navigation'
 import './styles.css'
 import Link from 'next/link'
-export default function ServiceLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function ServiceLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   return (
     <Fragment>
@@ -66,10 +54,7 @@ export default function ServiceLayout({
                 key={item}
                 className={'w-full'}
               >
-                <div
-                  className="flex w-full flex-col items-center justify-center gap-1 py-3"
-                  key={item}
-                >
+                <div className="flex w-full flex-col items-center justify-center gap-1 py-3" key={item}>
                   {item === 'SERVICE_INSPECT' ? (
                     <ImageSearchOutlined />
                   ) : item === 'SERVICE_MAP' ? (

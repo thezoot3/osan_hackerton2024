@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <head>
+        <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" />
         <Script
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAOMAPS_APIKEY}&libraries=services,clusterer&autoload=false`}
           strategy="beforeInteractive"
@@ -28,7 +29,7 @@ export default function RootLayout({
         <nav>
           <Header />
         </nav>
-        <div className="min-h-screen w-full">{children}</div>
+        <div className="w-full">{children}</div>
       </body>
     </html>
   )
