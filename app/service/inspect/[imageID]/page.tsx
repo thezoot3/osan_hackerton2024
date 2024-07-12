@@ -14,7 +14,7 @@ export default function InspectResult({ params }: { params: { imageID: string } 
     )
   }, [params.imageID])
   return (
-    <div className={'flex h-full w-full flex-col px-8 py-24'}>
+    <div className={'flex h-dvh w-full flex-col overflow-y-scroll px-8 py-24'}>
       <span className={'text-2xl font-semibold text-black'}>검사 결과</span>
       <span className={'text-sm font-light text-gray-500'}>다음과 같은 쓰레기를 찾았어요.</span>
       {garbageList.length > 0 ? (
