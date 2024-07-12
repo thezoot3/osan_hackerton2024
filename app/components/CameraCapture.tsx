@@ -49,7 +49,7 @@ const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
       mirrored={facingMode === 'user'}
       screenshotFormat={'image/jpeg'}
       screenshotQuality={0.5}
-      videoConstraints={{ ...videoC, aspectRatio: size.width / size.height, facingMode: facingMode }}
+      videoConstraints={{ ...videoC, aspectRatio: size.height / size.width, facingMode: facingMode }}
       style={{ overflow: 'hidden', objectFit: 'cover' }}
     />
   )
