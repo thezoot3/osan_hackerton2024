@@ -25,8 +25,8 @@ export default function InspectDetails({ garbageType }: { garbageType: string })
               <li className={'text-lg font-medium'} key={i}>
                 {i}
                 <ul className="break-keep pl-5 text-sm font-normal">
-                  {details?.instruct[i].map((r) => {
-                    return <li key={i + r}>r</li>
+                  {details?.instruct[i].map((r, index) => {
+                    return <li key={i + index}>{r}</li>
                   })}
                 </ul>
               </li>
