@@ -123,14 +123,14 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
       onZoomChanged={onAnyMove}
       onDragEnd={onAnyMove}
     >
-      {Array.from(markers.keys()).map((id) => {
+      {Array.from(markers.keys()).map((id, i) => {
         const marker = markers.get(id)!
         if (isMarkerVisable(marker.coordinate)) {
           if (marker.infoWindow) {
             return (
               <MapMarker
                 position={marker.coordinate}
-                key={id}
+                key={id + i}
                 clickable={true}
                 onClick={onMarkerClickFactory(id)}
                 image={{

@@ -8,13 +8,13 @@ export default function Home() {
       <Image src={bgImage} alt={'asd'} width={500} height={500} className="absolute bottom-0 left-0 w-full"></Image>
       <div className={'flex flex-col gap-5'}>
         <div className={'flex flex-col gap-5 text-6xl font-bold'}>
-          <span>문구1,</span>
-          <span>문구2,</span>
-          <span>문구3</span>
+          <span>찍고,</span>
+          <span>확인하고,</span>
+          <span>버리고</span>
         </div>
         <div className={'flex flex-col gap-1 text-xl font-semibold'}>
-          <span>동해물과 백두산이 마르고 닳도록</span>
-          <span>무궁화 삼천리 화려강산</span>
+          <span>새로운 쓰래기 배출의 삼박자.</span>
+          <span>내가 몰랐던 쓰래기의 모든 것</span>
         </div>
         <div className={'flex flex-col gap-3'}>
           <Link href={ServiceNavigationPath.SERVICE_INSPECT}>
@@ -22,7 +22,6 @@ export default function Home() {
               <span className={'text-base font-medium text-white'}>시작하기</span>
             </div>
           </Link>
-          <span className={'text-base font-medium text-blue-500'}>로그인하고 시작하기</span>
         </div>
       </div>
     </div>
