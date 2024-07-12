@@ -17,9 +17,13 @@ export default function InspectResult({ params }: { params: { imageID: string } 
     <div className={'flex h-full w-full flex-col px-8 py-24'}>
       <span className={'text-2xl font-semibold text-black'}>검사 결과</span>
       <span className={'text-sm font-light text-gray-500'}>다음과 같은 쓰레기를 찾았어요.</span>
-      {garbageList.map((i) => {
-        return <InspectDetails garbageType={i} key={i} />
-      })}
+      {garbageList.length > 0 ? (
+        garbageList.map((i) => {
+          return <InspectDetails garbageType={i} key={i} />
+        })
+      ) : (
+        <div className={'mt-3 h-96 w-full animate-pulse rounded-lg bg-gray-300'}></div>
+      )}
     </div>
   )
 }

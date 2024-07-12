@@ -12,6 +12,7 @@ const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
   const [videoC, setVideoC] = useState<{}>()
   useEffect(() => {
     setSize({ width: window.innerWidth, height: window.innerHeight })
+    alert(window.innerHeight + ' ' + window.innerWidth)
   }, [])
   useEffect(() => {
     if (size.height > size.width) {
@@ -23,7 +24,7 @@ const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
         height: size.height,
       })
     }
-  }, [])
+  }, [size.height, size.width])
   useImperativeHandle(ref, () => ({
     isInited: Boolean(webcamRef.current),
     captureImage: (width: number, height: number): string | null => {
@@ -47,7 +48,8 @@ const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
       ref={webcamRef}
       mirrored={facingMode === 'user'}
       screenshotFormat={'image/jpeg'}
-      videoConstraints={{ ...videoC, aspectRatio: size.height / size.width, facingMode: facingMode }}
+      screenshotQuality={0.5}
+      videoConstraints={{ ...videoC, aspectRatio: size.width / size.height, facingMode: facingMode }}
       style={{ overflow: 'hidden', objectFit: 'cover' }}
     />
   )
