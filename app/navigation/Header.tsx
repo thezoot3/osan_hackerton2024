@@ -12,7 +12,7 @@ export default function Header() {
         <Link href={HomeNavigationPath.HOME_ROOT}>
           <div className={'flex items-center gap-4'}>
             <RecyclingOutlined className="text-2xl" />
-            <span className={'text-lg font-semibold'}>대충 서비스 이름</span>
+            <span className={'text-lg font-semibold'}>오산 스마트 쓰레기</span>
           </div>
         </Link>
       </div>

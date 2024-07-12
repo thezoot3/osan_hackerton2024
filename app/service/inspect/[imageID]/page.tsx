@@ -8,7 +8,7 @@ export default function InspectResult({ params }: { params: { imageID: string } 
   useEffect(() => {
     fetch(ApiOrigin + '/inspect/prompt/' + params.imageID, { method: 'GET' }).then((res) =>
       res.json().then((r) => {
-        const arr = new Set<string>(JSON.parse(r.toString()))
+        const arr = new Set<string>(r.result)
         setList(Array.from(arr))
       }),
     )
