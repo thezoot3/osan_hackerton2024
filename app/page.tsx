@@ -5,13 +5,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <div className="relative flex min-h-screen w-full flex-col px-8 pt-24">
-      <Image
-        src={bgImage}
-        alt={'asd'}
-        width={500}
-        height={500}
-        className="absolute bottom-0 left-0 w-full"
-      ></Image>
+      <Image src={bgImage} alt={'asd'} width={500} height={500} className="absolute bottom-0 left-0 w-full"></Image>
       <div className={'flex flex-col gap-5'}>
         <div className={'flex flex-col gap-5 text-6xl font-bold'}>
           <span>문구1,</span>
@@ -24,19 +18,11 @@ export default function Home() {
         </div>
         <div className={'flex flex-col gap-3'}>
           <Link href={ServiceNavigationPath.SERVICE_INSPECT}>
-            <div
-              className={
-                'flex h-10 w-24 items-center justify-center rounded-xl bg-blue-500'
-              }
-            >
-              <span className={'text-base font-medium text-white'}>
-                시작하기
-              </span>
+            <div className={'flex h-10 w-24 items-center justify-center rounded-xl bg-blue-500'}>
+              <span className={'text-base font-medium text-white'}>시작하기</span>
             </div>
           </Link>
-          <span className={'text-base font-medium text-blue-500'}>
-            로그인하고 시작하기
-          </span>
+          <span className={'text-base font-medium text-blue-500'}>로그인하고 시작하기</span>
         </div>
       </div>
     </div>

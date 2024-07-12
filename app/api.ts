@@ -1,4 +1,4 @@
-export const ApiOrigin = 'https://hacker.thezoot3.com'
+export const ApiOrigin = 'https://api.thezoot3.com'
 
 export interface UploadResponse {
   imageID: string
