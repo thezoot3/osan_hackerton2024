@@ -7,7 +7,7 @@ export interface CameraCaptureRef {
   toggleFacingCamera: () => void
 }
 const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
-  const [size, setSize] = useState({ width: 0, height: 0 })
+  const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
   const [facingMode, setFacing] = useState<'user' | 'environment'>('environment')
   const [videoC, setVideoC] = useState<{}>()
   useEffect(() => {
