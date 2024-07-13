@@ -28,7 +28,7 @@ type GarbageType =
   | '상자류'
   | '종이컵'
   | '책자'
-export default function InspectDetails({ garbageType }: { garbageType: GarbageType }) {
+export default function InspectDetails({ garbageType }: { garbageType: string }) {
   const [details, setDetails] = useState<GarbageResponse>()
   useEffect(() => {
     fetch(ApiOrigin + '/inspect/item/' + garbageType, { method: 'GET' }).then((res) =>
@@ -40,7 +40,7 @@ export default function InspectDetails({ garbageType }: { garbageType: GarbageTy
   return (
     <div className={'flex w-full flex-col py-4'}>
       <div className={'flex items-center gap-2'}>
-        <Recycling className={`text-xl text-[${colorMap[garbageType]}]`} fontSize={'inherit'} />
+        <Recycling className={`text-xl text-[${colorMap[garbageType as GarbageType]}]`} fontSize={'inherit'} />
         <span className={'text-xl font-medium text-black'}>{garbageType}</span>
       </div>
       <div className={'flex flex-col gap-2'}>
