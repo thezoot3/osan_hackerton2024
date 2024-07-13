@@ -12,7 +12,6 @@ const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
   const [videoC, setVideoC] = useState<{}>()
   useEffect(() => {
     setSize({ width: window.innerWidth, height: window.innerHeight })
-    alert(window.innerHeight + ' ' + window.innerWidth)
   }, [])
   useEffect(() => {
     if (size.height > size.width) {

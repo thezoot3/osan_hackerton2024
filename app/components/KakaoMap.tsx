@@ -1,5 +1,5 @@
 'use client'
-import { Map as KMap, MapMarker } from 'react-kakao-maps-sdk'
+import { Map as KMap, MapMarker, MapTypeControl, ZoomControl } from 'react-kakao-maps-sdk'
 import React, { forwardRef, ReactElement, useCallback, useEffect, useImperativeHandle, useState } from 'react'
 import { useImmer } from 'use-immer'
 import { enableMapSet } from 'immer'
@@ -30,6 +30,7 @@ export interface KakaoMapMarkerData {
 export interface KakaoMapRef {
   addMarker(markers: KakaoMapAddMarkerParam[]): void
   addMarkerInfoWindow(infoWindow: KakaoMapAddInfoWindowParam[]): void
+  moveToSpecificCoordinate(coor: Coordinate): void
 }
 export interface Coordinate {
   lat: number
@@ -39,6 +40,7 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
   useEffect(() => {
     enableMapSet()
   }, [])
+  const [center, setCenter] = useState<Coordinate>(props.centerCoordinates)
   const [markers, setMarkers] = useImmer(new Map<string, KakaoMapMarkerData>())
   const [clickedMarker, setClickedMarker] = useState<string | null>()
   const [viewPoint, setViewPoint] = useState<{
@@ -109,6 +111,9 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
           return prev
         })
       },
+      moveToSpecificCoordinate(coor: Coordinate) {
+        setCenter(coor)
+      },
     }),
     [setMarkers],
   )
@@ -117,18 +122,20 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
   }, [markers])
   return (
     <KMap
-      center={props.centerCoordinates}
-      style={{ width: '100%', height: '100dvh' }}
+      center={center!}
+      style={{ width: '100%', height: '100%' }}
       level={props.zoomLevel}
       onZoomChanged={onAnyMove}
       onDragEnd={onAnyMove}
     >
+      <MapTypeControl position={'BOTTOMLEFT'} />
       {Array.from(markers.keys()).map((id, i) => {
         const marker = markers.get(id)!
         if (isMarkerVisable(marker.coordinate)) {
           if (marker.infoWindow) {
             return (
               <MapMarker
+                zIndex={-10}
                 position={marker.coordinate}
                 key={id + i}
                 clickable={true}
@@ -144,6 +151,7 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
           } else {
             return (
               <MapMarker
+                zIndex={-10}
                 position={marker.coordinate}
                 key={id}
                 image={{

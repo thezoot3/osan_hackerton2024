@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ApiOrigin } from '@/app/api'
+import { CustomOverlayMap } from 'react-kakao-maps-sdk'
+import { ConfirmationNumber, Delete } from '@mui/icons-material'
 
 interface SellerData {
   name: string
@@ -25,9 +27,10 @@ export default function TrashMapInfoWindow({ name }: { name: string }) {
     window.open('kakaomap://look?p=' + info?.lat + ',' + info?.lng, '_blank')
   }
   return (
-    <div className={'flex flex-col text-sm'}>
-      <span>{info?.name}</span>
-      <span>{info?.address}</span>
+    <div onClick={onClick} className={'flex w-full items-center justify-between px-3'}>
+      <span className={'text-center text-sm'}>{info?.name}</span>
+      {info?.garbageBag ? <Delete fontSize={'small'} /> : null}
+      {info?.garbageSticker ? <ConfirmationNumber fontSize={'small'} /> : null}
     </div>
   )
 }

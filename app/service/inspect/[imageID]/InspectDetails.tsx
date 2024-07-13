@@ -2,7 +2,33 @@ import { Recycling } from '@mui/icons-material'
 import './styles.css'
 import { useEffect, useState } from 'react'
 import { ApiOrigin, GarbageResponse } from '@/app/api'
-export default function InspectDetails({ garbageType }: { garbageType: string }) {
+
+const colorMap = {
+  종이팩: '#29AB4A',
+  유리병: '#F47921',
+  금속캔: '#808285',
+  '스프레이 캔': '#808285',
+  플라스틱: '#015B9D',
+  비닐: '#734B9E',
+  종이: '#231F20',
+  신문지: '#231F20',
+  상자류: '#231F20',
+  종이컵: '#231F20',
+  책자: '#231F20',
+}
+type GarbageType =
+  | '종이팩'
+  | '유리병'
+  | '금속캔'
+  | '스프레이 캔'
+  | '플라스틱'
+  | '비닐'
+  | '종이'
+  | '신문지'
+  | '상자류'
+  | '종이컵'
+  | '책자'
+export default function InspectDetails({ garbageType }: { garbageType: GarbageType }) {
   const [details, setDetails] = useState<GarbageResponse>()
   useEffect(() => {
     fetch(ApiOrigin + '/inspect/item/' + garbageType, { method: 'GET' }).then((res) =>
@@ -14,7 +40,7 @@ export default function InspectDetails({ garbageType }: { garbageType: string })
   return (
     <div className={'flex w-full flex-col py-4'}>
       <div className={'flex items-center gap-2'}>
-        <Recycling className={'text-xl text-lime-500'} fontSize={'inherit'} />
+        <Recycling className={`text-xl text-[${colorMap[garbageType]}]`} fontSize={'inherit'} />
         <span className={'text-xl font-medium text-black'}>{garbageType}</span>
       </div>
       <div className={'flex flex-col gap-2'}>
