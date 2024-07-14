@@ -1,17 +1,25 @@
 'use client'
 import { HistoryOutlined, ImageSearchOutlined, MapOutlined, SettingsOutlined } from '@mui/icons-material'
 import { ServiceNavigationDisplay, ServiceNavigationPath } from '@/app/navigation'
-import React, { Fragment } from 'react'
-import { usePathname } from 'next/navigation'
+import React, { Fragment, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import './styles.css'
 import Link from 'next/link'
 export default function ServiceLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
+  useEffect(() => {
+    const isMobile = new RegExp(/Mobile|Android|iPhone/).test(navigator.userAgent)
+    if (!isMobile) {
+      router.push('/desktop') // 데스크탑 버전 경로
+    }
+  }, [])
+
   return (
     <Fragment>
-      <div className={'flex h-dvh w-full flex-col'}>
+      <div className={'relative flex h-full w-full flex-col'}>
         {children}
-        <div className="z-30 flex w-full flex-col">
+        <div className="absolute bottom-0 z-50 flex w-full flex-col">
           <div id="shadow_top" className="flex w-full justify-between bg-white">
             {Object.keys(ServiceNavigationPath).map((item) => {
               //@ts-ignore

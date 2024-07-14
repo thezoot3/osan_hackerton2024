@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 import Header from './navigation/Header'
-import Script from 'next/script'
 import React from 'react'
 
 const pretendard = localFont({ src: '../public/font/PretendardVariable.woff2' })
@@ -20,16 +19,12 @@ export default function RootLayout({
     <html lang="kr">
       <head>
         <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" />
-        <Script
-          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAOMAPS_APIKEY}&libraries=services,clusterer&autoload=false`}
-          strategy="beforeInteractive"
-        />
       </head>
       <body className={pretendard.className}>
         <nav>
           <Header />
         </nav>
-        <div className="w-full">{children}</div>
+        <div className="h-dvh w-full">{children}</div>
       </body>
     </html>
   )

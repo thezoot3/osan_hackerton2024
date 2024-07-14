@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Cameraswitch, FileUpload, ImageSearchOutlined } from '@mui/icons-material'
 import { useRouter } from 'next/navigation'
 import { ApiOrigin, UploadResponse } from '@/app/api'
-
+import bgImage from '@/public/images/camera_load.svg'
 export default function InspectCamera() {
   const cameraRef = useRef<CameraCaptureRef>({} as CameraCaptureRef)
   const [size, setSize] = useState({ width: 0, height: 0 })
@@ -38,22 +38,25 @@ export default function InspectCamera() {
         throw e
       }
     }
-  }, [size.height, size.width])
+  }, [nav, size.height, size.width])
   return (
-    <div className={'bg-gray-200'}>
+    <div
+      className={'h-full bg-gray-200'}
+      style={{ backgroundPosition: 'center', backgroundImage: `url(${bgImage.src})`, backgroundRepeat: 'no-repeat' }}
+    >
       <CameraCapture ref={cameraRef} />
-      <div className={'absolute bottom-28 z-30 flex w-full items-center justify-center'}>
+      <div className={'absolute bottom-28 z-50 flex w-full items-center justify-center'}>
         <div className={'flex items-center gap-10'}>
-          <div id={'btn'} className="rounded-[3rem] p-3">
+          <div id={'btn'} className="rounded-[3rem] p-3.5">
             <FileUpload className="text-white" />
           </div>
           <div
             id="btn_border"
-            className="flex items-center justify-center rounded-[5rem] bg-indigo-600 p-5 text-3xl shadow-2xl shadow-black"
+            className="flex items-center justify-center rounded-[5rem] bg-indigo-600 p-6 text-3xl shadow-2xl shadow-black"
           >
             <ImageSearchOutlined className="text-white" fontSize={'inherit'} onClick={captureImage} />
           </div>
-          <div id={'btn'} className="rounded-[3rem] p-3">
+          <div id={'btn'} className="rounded-[3rem] p-3.5">
             <Cameraswitch className="text-white" onClick={reverseFacingMode} />
           </div>
         </div>

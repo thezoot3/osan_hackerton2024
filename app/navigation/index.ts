@@ -1,5 +1,5 @@
 export enum HomeNavigationPath {
-  HOME_ROOT = '/home',
+  HOME_ROOT = '/',
 }
 export enum ServiceNavigationPath {
   SERVICE_INSPECT = '/service/inspect',

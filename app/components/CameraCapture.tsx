@@ -1,28 +1,24 @@
 'use client'
 import Webcam from 'react-webcam'
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, Fragment, useEffect, useImperativeHandle, useRef, useState } from 'react'
 export interface CameraCaptureRef {
   isInited: boolean
   captureImage: (width: number, height: number) => string | null
   toggleFacingCamera: () => void
 }
 const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
+  const webcamRef = useRef<Webcam>(null)
   const [size, setSize] = useState({ width: 0, height: 0 })
-  const [facingMode, setFacing] = useState<'user' | 'environment'>('environment')
-  const [videoC, setVideoC] = useState<{}>()
+  const [facingMode, setFacing] = useState<'user' | 'environment' | undefined>(undefined)
+  let isVertical = true
   useEffect(() => {
     setSize({ width: window.innerWidth, height: window.innerHeight })
-    alert(window.innerHeight + ' ' + window.innerWidth)
   }, [])
   useEffect(() => {
     if (size.height > size.width) {
-      setVideoC({
-        width: size.width,
-      })
+      isVertical = true
     } else {
-      setVideoC({
-        height: size.height,
-      })
+      isVertical = false
     }
   }, [size.height, size.width])
   useImperativeHandle(ref, () => ({
@@ -36,22 +32,24 @@ const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
     },
     toggleFacingCamera: () => {
       setFacing((prev) => {
-        return prev === 'user' ? 'environment' : 'user'
+        return prev === 'environment' ? 'user' : 'environment'
       })
     },
   }))
-  const webcamRef = useRef<Webcam>(null)
+
   return (
-    <Webcam
-      width={size.width}
-      height={size.height}
-      ref={webcamRef}
-      mirrored={facingMode === 'user'}
-      screenshotFormat={'image/jpeg'}
-      screenshotQuality={0.5}
-      videoConstraints={{ ...videoC, aspectRatio: size.height / size.width, facingMode: facingMode }}
-      style={{ overflow: 'hidden', objectFit: 'cover' }}
-    />
+    <Fragment>
+      <Webcam
+        width={isVertical ? size.width : undefined}
+        height={!isVertical ? size.height : undefined}
+        ref={webcamRef}
+        mirrored={facingMode === 'user'}
+        screenshotFormat={'image/webp'}
+        screenshotQuality={0.5}
+        videoConstraints={{ aspectRatio: size.height / size.width, facingMode: facingMode }}
+        style={{ overflow: 'hidden', objectFit: 'cover' }}
+      />
+    </Fragment>
   )
 })
 CameraCapture.displayName = 'CameraCapture'

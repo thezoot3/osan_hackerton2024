@@ -40,7 +40,7 @@ export default function InspectDetails({ garbageType }: { garbageType: string })
   return (
     <div className={'flex w-full flex-col py-4'}>
       <div className={'flex items-center gap-2'}>
-        <Recycling className={`text-xl text-[${colorMap[garbageType as GarbageType]}]`} fontSize={'inherit'} />
+        <Recycling className={`text-xl`} style={{ color: colorMap[garbageType as GarbageType] }} fontSize={'inherit'} />
         <span className={'text-xl font-medium text-black'}>{garbageType}</span>
       </div>
       <div className={'flex flex-col gap-2'}>
