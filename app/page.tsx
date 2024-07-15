@@ -12,7 +12,7 @@ export default function Home() {
     if (!isMobile) {
       router.push('/desktop') // 데스크탑 버전 경로
     }
-  }, [])
+  }, [router])
   return (
     <div className="relative flex min-h-screen w-full flex-col px-8 pt-24">
       <div className={'z-10 flex flex-col gap-5'}>
