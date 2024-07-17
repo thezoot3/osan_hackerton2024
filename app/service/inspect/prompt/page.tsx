@@ -17,7 +17,6 @@ export default function InspectResult() {
     if (!imageData) {
       router.push('/error/inspectImageNotFound')
     } else {
-      prompt(URL.createObjectURL(imageData))
       setImageUrl(URL.createObjectURL(imageData))
     }
   }, [imageData, router])
@@ -91,7 +90,7 @@ export default function InspectResult() {
             return null
           })
         ) : (
-          <span className={'text-xl font-medium text-black'}>이미지에서 쓰레기 종류를 인식할 수 없습니다 😥</span>
+          <span className={'py-10 text-xl font-medium text-black'}>이미지에서 쓰레기 종류를 인식할 수 없습니다 😥</span>
         )
       ) : (
         <div className={'mt-3 h-96 w-full animate-pulse rounded-lg bg-gray-300'}></div>
