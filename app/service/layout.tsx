@@ -18,7 +18,7 @@ export default function ServiceLayout({ children }: { children: React.ReactNode 
     <Fragment>
       <div className={'relative flex h-full w-full flex-col'}>
         {children}
-        <div className="bottom-0 z-50 flex w-full flex-col">
+        <div className="absolute bottom-0 z-50 flex w-full">
           <div id="shadow_top" className="flex w-full justify-between bg-white">
             {Object.keys(ServiceNavigationPath).map((item) => {
               //@ts-ignore

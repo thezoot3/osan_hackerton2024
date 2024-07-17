@@ -9,7 +9,7 @@ export interface CameraCaptureRef {
 const CameraCapture = forwardRef<CameraCaptureRef>((props, ref) => {
   const webcamRef = useRef<Webcam>(null)
   const [size, setSize] = useState({ width: 0, height: 0 })
-  const [facingMode, setFacing] = useState<'user' | 'environment' | undefined>(undefined)
+  const [facingMode, setFacing] = useState<'user' | 'environment' | undefined>('environment')
   let isVertical = true
   useEffect(() => {
     setSize({ width: window.innerWidth, height: window.innerHeight })

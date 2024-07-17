@@ -117,9 +117,6 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
     }),
     [setMarkers],
   )
-  useEffect(() => {
-    console.log(markers)
-  }, [markers])
   return (
     <KMap
       center={center!}

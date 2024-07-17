@@ -25,7 +25,7 @@ export default function InspectCamera() {
       for (let i = 0; i < byteString.length; i++) {
         ia[i] = byteString.charCodeAt(i)
       }
-      return new Blob([ab], { type: 'image/jpeg' })
+      return new Blob([ab], { type: 'image/webp' })
     }
     if (image) {
       inspectContext.setImageData(b64toBlob(image))
@@ -38,9 +38,9 @@ export default function InspectCamera() {
       style={{ backgroundPosition: 'center', backgroundImage: `url(${bgImage.src})`, backgroundRepeat: 'no-repeat' }}
     >
       <CameraCapture ref={cameraRef} />
-      <div className={'absolute bottom-6 z-50 flex w-full items-center justify-center'}>
+      <div className={'absolute bottom-28 z-50 flex w-full items-center justify-center'}>
         <div className={'flex items-center gap-10'}>
-          <div id={'btn'} className="rounded-[3rem] p-3.5">
+          <div id={'btn'} className="rounded-[3rem] p-3.5" onClick={() => alert('아직 구현되지 않았습니다 😢')}>
             <FileUpload className="text-white" />
           </div>
           <div
