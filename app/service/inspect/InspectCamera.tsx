@@ -19,12 +19,15 @@ export default function InspectCamera() {
   const captureImage = useCallback(() => {
     const image = cameraRef.current.captureImage(size.width, size.height)
     if (image) {
-      fetch(image).then((res) => {
-        res.blob().then((blob) => {
-          inspectContext.setImageData(blob)
-          nav.push('/service/inspect/prompt')
-        })
-      })
+      const base64Data = image.split(',')[1]
+      const arrayBuffer = new ArrayBuffer(base64Data.length)
+      const uint8Array = new Uint8Array(arrayBuffer)
+      for (let i = 0; i < base64Data.length; i++) {
+        uint8Array[i] = base64Data.charCodeAt(i)
+      }
+      const blob = new Blob([uint8Array], { type: 'image/jpeg' })
+      inspectContext.setImageData(blob)
+      nav.push('/service/inspect/prompt')
     }
   }, [inspectContext, nav, size.height, size.width])
   return (
