@@ -43,7 +43,7 @@ export default function InspectResult() {
     }
 
     if (imageData) {
-      console.log(imageData, router, Date.now())
+      prompt(imageData.toString())
       upload(imageData)
         .then((imageID) => {
           prompt(imageID).catch(console.error)
