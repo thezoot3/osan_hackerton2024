@@ -13,13 +13,12 @@ export default function ServiceLayout({ children }: { children: React.ReactNode 
     if (!isMobile) {
       router.push('/desktop') // 데스크탑 버전 경로
     }
-  }, [])
-
+  }, [router])
   return (
     <Fragment>
       <div className={'relative flex h-full w-full flex-col'}>
         {children}
-        <div className="absolute bottom-0 z-50 flex w-full flex-col">
+        <div className="bottom-0 z-50 flex w-full flex-col">
           <div id="shadow_top" className="flex w-full justify-between bg-white">
             {Object.keys(ServiceNavigationPath).map((item) => {
               //@ts-ignore
