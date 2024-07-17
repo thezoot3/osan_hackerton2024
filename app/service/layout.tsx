@@ -9,7 +9,7 @@ export default function ServiceLayout({ children }: { children: React.ReactNode 
   const pathname = usePathname()
   const router = useRouter()
   useEffect(() => {
-    const isMobile = new RegExp(/Mobile|Android|iPhone/).test(navigator.userAgent)
+    const isMobile = new RegExp(/Mobile|Android|iPhone|iPad/).test(navigator.userAgent)
     if (!isMobile) {
       router.push('/desktop') // 데스크탑 버전 경로
     }

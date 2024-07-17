@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 export default function Home() {
   const router = useRouter()
   useEffect(() => {
-    const isMobile = new RegExp(/Mobile|Android|iPhone/).test(navigator.userAgent)
+    const isMobile = new RegExp(/Mobile|Android|iPhone|iPad/).test(navigator.userAgent)
     if (!isMobile) {
       router.push('/desktop') // 데스크탑 버전 경로
     }
