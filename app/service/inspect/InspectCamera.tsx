@@ -19,15 +19,12 @@ export default function InspectCamera() {
   const captureImage = useCallback(() => {
     const image = cameraRef.current.captureImage(size.width, size.height)
     if (image) {
-      const base64Data = image.split(',')[1]
-      const arrayBuffer = new ArrayBuffer(base64Data.length)
-      const uint8Array = new Uint8Array(arrayBuffer)
-      for (let i = 0; i < base64Data.length; i++) {
-        uint8Array[i] = base64Data.charCodeAt(i)
-      }
-      const blob = new Blob([uint8Array], { type: 'image/jpeg' })
-      inspectContext.setImageData(blob)
-      nav.push('/service/inspect/prompt')
+      fetch(image).then((res) => {
+        res.blob().then((blob) => {
+          inspectContext.setImageData(blob)
+          nav.push('/service/inspect/prompt')
+        })
+      })
     }
   }, [inspectContext, nav, size.height, size.width])
   return (
@@ -36,14 +33,14 @@ export default function InspectCamera() {
       style={{ backgroundPosition: 'center', backgroundImage: `url(${bgImage.src})`, backgroundRepeat: 'no-repeat' }}
     >
       <CameraCapture ref={cameraRef} />
-      <div className={'absolute bottom-8 z-50 flex w-full items-center justify-center'}>
+      <div className={'absolute bottom-6 z-50 flex w-full items-center justify-center'}>
         <div className={'flex items-center gap-10'}>
           <div id={'btn'} className="rounded-[3rem] p-3.5">
             <FileUpload className="text-white" />
           </div>
           <div
             id="btn_border"
-            className="flex items-center justify-center rounded-[5rem] bg-indigo-600 p-6 text-3xl shadow-lg shadow-gray-400"
+            className="flex items-center justify-center rounded-[5rem] bg-indigo-600 p-6 text-3xl shadow-2xl shadow-black"
           >
             <ImageSearchOutlined className="text-white" fontSize={'inherit'} onClick={captureImage} />
           </div>
