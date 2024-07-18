@@ -125,7 +125,7 @@ const KakaoMap = forwardRef((props: KakaoMapProps, ref) => {
       onZoomChanged={onAnyMove}
       onDragEnd={onAnyMove}
     >
-      <MapTypeControl position={'BOTTOMLEFT'} />
+      <MapTypeControl position={'TOPRIGHT'} />
       {Array.from(markers.keys()).map((id, i) => {
         const marker = markers.get(id)!
         if (isMarkerVisable(marker.coordinate)) {
