@@ -29,8 +29,6 @@ export default function TrashMapInfoWindow({ name }: { name: string }) {
   return (
     <div onClick={onClick} className={'flex w-full items-center justify-between px-3'}>
       <span className={'text-center text-sm'}>{info?.name}</span>
-      {info?.garbageBag ? <Delete fontSize={'small'} /> : null}
-      {info?.garbageSticker ? <ConfirmationNumber fontSize={'small'} /> : null}
     </div>
   )
 }

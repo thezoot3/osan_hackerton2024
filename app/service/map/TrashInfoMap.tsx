@@ -91,7 +91,7 @@ export default function TrashInfoMap() {
         centerCoordinates={{ lng: 127.077238, lat: 37.149754 }}
         zoomLevel={5}
       />
-      <div className={'absolute bottom-14 right-3 z-50 rounded bg-gray-200 p-3 drop-shadow'} onClick={getLocation}>
+      <div className={'absolute bottom-20 right-3 z-50 rounded bg-gray-200 p-3 drop-shadow'} onClick={getLocation}>
         <GpsFixed />
       </div>
     </div>
