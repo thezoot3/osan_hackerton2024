@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { ApiOrigin } from '@/app/api'
-import { CustomOverlayMap } from 'react-kakao-maps-sdk'
-import { ConfirmationNumber, Delete } from '@mui/icons-material'
 
 interface SellerData {
   name: string
