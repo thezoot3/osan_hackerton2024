@@ -36,7 +36,7 @@ export default function InspectResult() {
     async function prompt(imageID: string) {
       fetch(ApiOrigin + '/inspect/prompt/' + imageID, { method: 'GET' }).then((res) =>
         res.json().then((r) => {
-          const arr = new Set<string>(r.result)
+          const arr = new Set<string>(r.result || [])
           setList(Array.from(arr))
         }),
       )
@@ -82,7 +82,7 @@ export default function InspectResult() {
         </div>
       </div>
       {garbageList ? (
-        garbageList.length > 0 ? (
+        garbageList.length > 0 || garbageList ? (
           garbageList.map((i) => {
             if (i) {
               return <InspectDetails garbageType={i} key={i} />
