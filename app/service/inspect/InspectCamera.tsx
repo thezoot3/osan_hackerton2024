@@ -46,11 +46,12 @@ export default function InspectCamera() {
           <div
             id="btn_border"
             className="flex items-center justify-center rounded-[5rem] bg-indigo-600 p-6 text-3xl shadow-2xl shadow-black"
+            onClick={captureImage}
           >
-            <ImageSearchOutlined className="text-white" fontSize={'inherit'} onClick={captureImage} />
+            <ImageSearchOutlined className="text-white" fontSize={'inherit'} />
           </div>
-          <div id={'btn'} className="rounded-[3rem] p-3.5">
-            <Cameraswitch className="text-white" onClick={reverseFacingMode} />
+          <div id={'btn'} className="rounded-[3rem] p-3.5" onClick={reverseFacingMode}>
+            <Cameraswitch className="text-white" />
           </div>
         </div>
       </div>
